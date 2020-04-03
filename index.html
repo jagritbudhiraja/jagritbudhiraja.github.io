@@ -43,7 +43,36 @@
         <div class="color-option"></div>
     </div>
     </div>
-   <script src="./app.js">
+   <script>
+       let selectedcolor="#fff";
+init();
+makeColorPalette();
+function init(){
+    let dots=document.querySelector("#dots");
+    for (let i = 0; i < dots.children.length; i++) {
+        const dot = dots.children[i];
+        dot.addEventListener('click',changecolor);
+    }
+}
+function makeColorPalette()
+{
+    let palette=document.querySelector('#palette');
+    let colors=['red','orange','gold','limegreen','blue'];
+    
+
+    for (let i = 0; i < palette.children.length; i++) {
+        const colorbox = palette.children[i%colors.length];
+        colorbox.style.backgroundColor=colors[i%colors.length];
+        colorbox.addEventListener('click',function(e){
+          selectedcolor=e.target.style.backgroundColor;
+        });
+    }
+}
+
+function changecolor(e)
+{
+ e.target.style.backgroundColor=selectedcolor;
+}
    </script>
 </body>
 </html>
